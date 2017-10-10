@@ -39,6 +39,7 @@ public class MusicPlayer extends AppCompatActivity {
     private Intent alarmIntent;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
+    public static String songName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class MusicPlayer extends AppCompatActivity {
 
             public void setAlarm(int i){
                 alarmIntent = new Intent(musicBoundService, Alarm.class);
-                alarmIntent.putExtra("song", musicList.get(i).getName() + " Selected");
+                songName = musicList.get(i).getName() + " Selected";
                 pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, alarmIntent, 0);
                 alarmManager = (AlarmManager) getSystemService(musicBoundService.ALARM_SERVICE);
                 alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + 1000, pendingIntent);
@@ -81,7 +82,7 @@ public class MusicPlayer extends AppCompatActivity {
                         case 1:
                             path = R.raw.a_tale_of_two_cities;
                             mediaPlayer = MediaPlayer.create(getApplicationContext(),path);
-            
+
                             setAlarm(1);
                             break;
                         case 2:

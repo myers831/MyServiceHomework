@@ -23,11 +23,11 @@ public class Alarm extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, intent.getStringExtra("song"), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, MusicPlayer.songName, Toast.LENGTH_SHORT).show();
 
         NotificationCompat.Builder notification = (NotificationCompat.Builder) new NotificationCompat.Builder(context)
                 .setContentTitle("Music Player")
-                .setContentText(intent.getStringExtra("song"))
+                .setContentText(MusicPlayer.songName)
                 .setSmallIcon(R.mipmap.ic_launcher);
         notification.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE);
         notificationManagerCompat = NotificationManagerCompat.from(context);
